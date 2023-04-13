@@ -23,14 +23,14 @@ class MongoWrapper:
 
 
     #restituisce i documenti presenti all'interno della collection collectionname
-    def find(self, collectionname, filter = None, sortby = ""):
+    def find(self, collectionname, filter = None, sortby = "", projection = {}):
         res = None
         try:
             collection = self._database[collectionname]
             if filter == None:
-                res = collection.find()
+                res = collection.find(projection = projection)
             else:
-                res = collection.find(filter=filter)
+                res = collection.find(filter=filter, projection = projection)
             if sortby != "":
                 res = res.sort(sortby)
         except Exception as e:
