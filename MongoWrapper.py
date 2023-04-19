@@ -62,4 +62,8 @@ class MongoWrapper:
         except Exception as e:
             print(e)
         return res
+    
+    #restituisce una collection
+    def getCollection(self, collectionname):
+        return self._database[collectionname]
 
